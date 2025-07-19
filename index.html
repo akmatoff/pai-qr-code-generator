@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>PAI QR</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <img
+          src="https://pai.kg/logos/PaiLogo.svg"
+          alt="Pai Logo"
+          style="margin-bottom: 16px"
+        />
+        <p class="heading">Qr Code Generator</p>
+      </header>
+
+      <article class="wrapper">
+        <div class="color-selector">
+          <p class="muted" style="margin: 0; font-size: 12px">Select color</p>
+          <input
+            type="color"
+            id="colorPicker"
+            value="#000000"
+            style="margin-left: 8px"
+          />
+        </div>
+        <!-- <p class="muted">Load the file</p> -->
+        <button class="import-button">Import file (csv)</button>
+
+        <p class="button-desc muted">
+          Please, import a csv file with IDs on the second column.
+        </p>
+      </article>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.min.js
+"></script>
+    <script src="./renderer.js"></script>
+  </body>
+</html>
