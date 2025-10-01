@@ -1,7 +1,22 @@
-# Tauri + Vanilla TS
+# QR-code generator from CSV file
 
-This template should help get you started developing with Tauri in vanilla HTML, CSS and Typescript.
+Generate multiple QR-codes based on CSV file and provided link.
 
-## Recommended IDE Setup
+## Features
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- Provide a link which each row from CSV will be appended to
+- Select a color for QR-codes
+- Select output format. Supported formats:
+  - PNG
+  - SVG
+  - JPEG
+  - WEBP
+  - PDF
+- Import a CSV file
+- Provide a ZIP with all the generated QR-codes
+
+## Stack
+
+- TypeScript
+- Tauri
+- Vite
