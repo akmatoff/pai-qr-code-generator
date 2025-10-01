@@ -1,6 +1,6 @@
-import QRCodeStyling from "qr-code-styling";
-import { open } from "@tauri-apps/plugin-dialog";
-import { readTextFile } from "@tauri-apps/plugin-fs";
+import QRCodeStyling, { FileExtension } from "qr-code-styling";
+import { open, save } from "@tauri-apps/plugin-dialog";
+import { readTextFile, writeFile } from "@tauri-apps/plugin-fs";
 import Papa from "papaparse";
 import JSZip from "jszip";
 import { paiLink } from "./constants";
@@ -20,6 +20,11 @@ export async function generateQRCodeBlob(
   value: string,
   fillColor: string
 ): Promise<Blob> {
+  const formatSelect = document.getElementById(
+    "formatSelect"
+  ) as HTMLSelectElement;
+  const selectedFormat = formatSelect.value as FileExtension;
+
   const logo = getColoredSvgBase64(fillColor);
 
   const qrCode = new QRCodeStyling({
@@ -50,7 +55,7 @@ export async function generateQRCodeBlob(
     },
   });
 
-  const raw = await qrCode.getRawData("svg");
+  const raw = await qrCode.getRawData(selectedFormat);
   return raw as Blob;
 }
 
@@ -86,6 +91,7 @@ export async function generateQrZip(
 
     try {
       const blob = await generateQRCodeBlob(link, color);
+
       zip.file(`qr_${id}.svg`, blob);
     } catch (err) {
       console.error("QR code generation error:", err);
@@ -94,13 +100,20 @@ export async function generateQrZip(
 
   const zipBlob = await zip.generateAsync({ type: "blob" });
 
+  console.log(zipBlob);
+
   return zipBlob;
 }
 
-export function saveBlob(blob: Blob, filename: string) {
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(a.href);
+export async function saveBlob(blob: Blob, filename: string) {
+  const filePath = await save({
+    defaultPath: filename,
+    filters: [{ name: "ZIP", extensions: ["zip"] }],
+  });
+
+  if (!filePath) return;
+
+  const buffer = new Uint8Array(await blob.arrayBuffer());
+
+  await writeFile(filePath, buffer);
 }

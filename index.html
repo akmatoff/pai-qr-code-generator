@@ -10,31 +10,76 @@
   </head>
   <body>
     <main>
-      <header>
-        <img
-          src="https://pai.kg/logos/PaiLogo.svg"
-          alt="Pai Logo"
-          style="margin-bottom: 16px"
-        />
-        <p class="heading">Qr Code Generator</p>
-      </header>
+      <div style="padding-top: 24px; padding-left: 24px; padding-right: 24px">
+        <header>
+          <img src="/src/assets/pai-logo.svg" alt="Pai Logo" />
+          <p class="heading">Qr Code Generator</p>
+        </header>
+      </div>
 
-      <article class="wrapper">
-        <div class="color-selector">
-          <p class="muted" style="margin: 0; font-size: 12px">Select color</p>
-          <input
-            type="color"
-            id="colorPicker"
-            value="#000000"
-            style="margin-left: 8px"
-          />
-        </div>
-        <button id="importButton">Import file (csv)</button>
+      <section>
+        <article class="wrapper">
+          <div class="select-options">
+            <div class="color-picker-wrapper">
+              <label for="colorPicker">Color</label>
+              <div class="color-selector">
+                <div class="color-display"></div>
+                <input type="color" id="colorPicker" value="#000000" />
+                <p id="selectedColorValue" class="muted">#000000</p>
+              </div>
+            </div>
 
-        <p class="button-desc muted">
-          Please, import a csv file with IDs on the second column.
-        </p>
-      </article>
+            <div class="select-format-wrapper">
+              <label for="formatSelect">Output Format</label>
+
+              <div style="position: relative">
+                <select id="formatSelect" class="custom-select">
+                  <option value="svg">SVG</option>
+                  <option value="png">PNG</option>
+                  <option value="jpeg">JPEG</option>
+                  <option value="webp">WEBP</option>
+                </select>
+
+                <span class="chevron-down">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                  >
+                    <!-- Icon from Material Line Icons by Vjacheslav Trushkin - https://github.com/cyberalien/line-md/blob/master/license.txt -->
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-dasharray="10"
+                      stroke-dashoffset="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 15l-5 -5M12 15l5 -5"
+                    >
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        dur="0.3s"
+                        values="10;0"
+                      />
+                    </path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="import-wrapper">
+            <button id="importButton">Import file (csv)</button>
+
+            <p class="button-desc muted text-center">
+              Please, import a csv file with IDs on the second column.
+            </p>
+          </div>
+        </article>
+      </section>
     </main>
   </body>
 </html>
