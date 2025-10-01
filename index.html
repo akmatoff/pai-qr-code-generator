@@ -20,6 +20,10 @@
       <section>
         <article class="wrapper">
           <div class="select-options">
+            <div class="link-input-wrapper">
+              <label for="linkInput">Link</label>
+              <input id="linkInput" />
+            </div>
             <div class="color-picker-wrapper">
               <label for="colorPicker">Color</label>
               <div class="color-selector">
@@ -38,6 +42,7 @@
                   <option value="png">PNG</option>
                   <option value="jpeg">JPEG</option>
                   <option value="webp">WEBP</option>
+                  <option value="pdf">PDF</option>
                 </select>
 
                 <span class="chevron-down">
@@ -74,12 +79,20 @@
           <div class="import-wrapper">
             <button id="importButton">Import file (csv)</button>
 
-            <p class="button-desc muted text-center">
-              Please, import a csv file with IDs on the second column.
-            </p>
+            <div class="button-desc-wrapper">
+              <p class="button-desc muted">
+                Please, import a csv file with IDs on the first or the second
+                column.
+              </p>
+            </div>
           </div>
         </article>
       </section>
+
+      <div id="loader" class="loader hidden">
+        <span class="spinner"></span>
+        <p>Generating QR-codes...</p>
+      </div>
     </main>
   </body>
 </html>

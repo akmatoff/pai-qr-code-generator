@@ -1,6 +1,10 @@
+import { PAI_LINK } from "./constants";
+import { hideLoader, showLoader, showToast } from "./lib";
 import { generateQrZip, saveBlob, selectCSVFile } from "./services";
 
 window.addEventListener("DOMContentLoaded", () => {
+  const linkInput = document.querySelector("#linkInput") as HTMLInputElement;
+
   const importButton = document.querySelector(
     "#importButton"
   ) as HTMLButtonElement;
@@ -21,6 +25,8 @@ window.addEventListener("DOMContentLoaded", () => {
     ".color-display"
   ) as HTMLDivElement;
 
+  linkInput.value = PAI_LINK;
+
   colorSelector.addEventListener("click", () => {
     colorPicker.click();
   });
@@ -30,13 +36,24 @@ window.addEventListener("DOMContentLoaded", () => {
     colorDisplay.style.backgroundColor = colorPicker.value;
   });
 
-  importButton.addEventListener("click", async () => {
-    const content = await selectCSVFile();
+  async function handleImport() {
+    try {
+      const content = await selectCSVFile();
 
-    if (!content) return;
+      if (!content) return;
 
-    const zip = await generateQrZip(content, colorPicker.value);
+      showLoader();
 
-    await saveBlob(zip, "qr_codes.zip");
-  });
+      const zip = await generateQrZip(content, colorPicker.value);
+
+      await saveBlob(zip, "qr_codes.zip");
+    } catch (err) {
+      showToast("Something went wrong", "error");
+      console.error(err);
+    } finally {
+      hideLoader();
+    }
+  }
+
+  importButton.addEventListener("click", handleImport);
 });
