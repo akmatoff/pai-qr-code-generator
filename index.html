@@ -2,8 +2,11 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./main.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/main.css" />
     <title>PAI QR</title>
+
+    <script type="module" src="/src/main.ts" defer></script>
   </head>
   <body>
     <main>
@@ -26,20 +29,12 @@
             style="margin-left: 8px"
           />
         </div>
-        <!-- <p class="muted">Load the file</p> -->
-        <button class="import-button">Import file (csv)</button>
+        <button id="importButton">Import file (csv)</button>
 
         <p class="button-desc muted">
           Please, import a csv file with IDs on the second column.
         </p>
       </article>
     </main>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <script src="
-https://cdn.jsdelivr.net/npm/qr-code-styling@1.9.2/lib/qr-code-styling.min.js
-"></script>
-    <script src="./renderer.js"></script>
   </body>
 </html>
