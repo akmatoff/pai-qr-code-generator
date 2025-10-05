@@ -14,8 +14,8 @@
     "windows": [
       {
         "title": "pai-qr-generator",
-        "width": 540,
-        "height": 540,
+        "width": 640,
+        "height": 640,
         "resizable": false
       }
     ],

@@ -10,7 +10,7 @@
   </head>
   <body>
     <main>
-      <div style="padding-top: 24px; padding-left: 24px; padding-right: 24px">
+      <div style="padding-top: 16px; padding-left: 16px; padding-right: 16px">
         <header>
           <img src="/pai-logo.svg" alt="Pai Logo" />
           <p class="heading">Qr Code Generator</p>
@@ -33,7 +33,7 @@
               </div>
             </div>
 
-            <div class="select-format-wrapper">
+            <div class="select-wrapper">
               <label for="formatSelect">Output Format</label>
 
               <div style="position: relative">
@@ -74,6 +74,69 @@
                 </span>
               </div>
             </div>
+            <div class="select-wrapper">
+              <label for="formatSelect">Column</label>
+
+              <div
+                style="
+                  position: relative;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  white-space: nowrap;
+                "
+              >
+                <select id="columnSelect" class="custom-select">
+                  <option value="0">First Column</option>
+                  <option value="1">Second Column</option>
+                  <option value="2">Third Column</option>
+                  <option value="3">Fourth Column</option>
+                  <option value="4">Fifth Column</option>
+                  <option value="5">Sixth Column</option>
+                  <option value="6">Seventh Column</option>
+                  <option value="7">Eighth Column</option>
+                  <option value="8">Ninth Column</option>
+                  <option value="9">Tenth Column</option>
+                  <option value="10">Eleventh Column</option>
+                  <option value="11">Twelfth Column</option>
+                  <option value="12">Thirteenth Column</option>
+                  <option value="13">Fourteenth Column</option>
+                  <option value="14">Fifteenth Column</option>
+                  <option value="15">Sixteenth Column</option>
+                  <option value="16">Seventeenth Column</option>
+                  <option value="17">Eighteenth Column</option>
+                  <option value="18">Nineteenth Column</option>
+                  <option value="19">Twentieth Column</option>
+                </select>
+
+                <span class="chevron-down">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                  >
+                    <!-- Icon from Material Line Icons by Vjacheslav Trushkin - https://github.com/cyberalien/line-md/blob/master/license.txt -->
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-dasharray="10"
+                      stroke-dashoffset="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 15l-5 -5M12 15l5 -5"
+                    >
+                      <animate
+                        fill="freeze"
+                        attributeName="stroke-dashoffset"
+                        dur="0.3s"
+                        values="10;0"
+                      />
+                    </path>
+                  </svg>
+                </span>
+              </div>
+            </div>
           </div>
 
           <div class="import-wrapper">
@@ -81,8 +144,8 @@
 
             <div class="button-desc-wrapper">
               <p class="button-desc muted">
-                Please, import a csv file with IDs on the first or the second
-                column.
+                Please upload a CSV file so that each row can be appended to the
+                link provided above.
               </p>
             </div>
           </div>

@@ -88,7 +88,18 @@ export async function generateQrZip(
     "formatSelect"
   ) as HTMLSelectElement;
 
+  const columnSelect = document.getElementById(
+    "columnSelect"
+  ) as HTMLSelectElement;
+
   const linkInput = document.getElementById("linkInput") as HTMLInputElement;
+
+  const selectedColumn = parseInt(columnSelect.value, 10);
+
+  if (isNaN(selectedColumn) || selectedColumn < 0) {
+    showToast("Invalid column selection", "error");
+    throw new Error("Invalid column selection");
+  }
 
   const selectedFormat = formatSelect.value as OutputFormat;
 
@@ -97,20 +108,23 @@ export async function generateQrZip(
     skipEmptyLines: true,
   });
 
-  const hasFirstColumn = parsed.data.some((row) => row[0]?.trim().length > 0);
-  const hasSecondColumn = parsed.data.some((row) => row[1]?.trim().length > 0);
+  const hasData = parsed.data && parsed.data.length > 0;
 
-  if (!hasFirstColumn && !hasSecondColumn) {
-    showToast("No data found in first and second columns", "error");
-    throw new Error("Invalid CSV format");
+  if (!hasData) {
+    throw new Error("CSV file is empty or invalid");
   }
 
-  const columnIndex = hasFirstColumn ? 0 : 1;
+  if (
+    parsed.data[0][selectedColumn].length === 0 ||
+    !parsed.data[0][selectedColumn]
+  ) {
+    throw new Error("Selected column is empty or invalid");
+  }
 
   const zip = new JSZip();
 
   for (const row of parsed.data) {
-    const id = row[columnIndex]?.trim();
+    const id = row[selectedColumn]?.trim();
     if (!id) continue;
 
     const link = linkInput.value + id;

@@ -38,6 +38,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   async function handleImport() {
     try {
+      if (!linkInput.value.trim()) {
+        throw new Error("Please enter a valid link");
+      }
+
+      if (!colorPicker.value) {
+        throw new Error("Please select a color");
+      }
+
       const content = await selectCSVFile();
 
       if (!content) return;
@@ -48,7 +56,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
       await saveBlob(zip, "qr_codes.zip");
     } catch (err) {
-      showToast("Something went wrong", "error");
+      showToast((err as Error).message || "Something went wrong", "error");
       console.error(err);
     } finally {
       hideLoader();
